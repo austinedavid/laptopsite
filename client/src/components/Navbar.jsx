@@ -14,6 +14,7 @@ import {clearUser} from '../Slice/user'
 import emptyCart from '../images/empty_cart.jpeg'
 import axios from 'axios'
 import {successfulBuys} from '../Slice/purchases'
+import {axiosInstance} from '../config'
 
 
 // stying below here
@@ -216,7 +217,7 @@ const Navbar = () => {
     useEffect(()=>{
         const getSuccessfulbuy = async()=>{
             try {
-                await axios.get(`payments/${user._id}`).then((res)=>{
+                await axiosInstance.get(`payments/${user._id}`).then((res)=>{
                     dispatch(successfulBuys(res.data))
                 })
             } catch (error) {
