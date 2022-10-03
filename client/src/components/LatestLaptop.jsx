@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import {Rating} from '@mui/material'
 import {Link, useNavigate} from 'react-router-dom'
 import axios from 'axios'
+import {axiosInstance} from '../config'
 
 // below here we create the styles for categories
 const Container = styled.div`
@@ -113,7 +114,7 @@ const LatestLaptop = () => {
     useEffect(()=>{
         const fetching = async()=>{
             try {
-                const fResult = await axios.get('/getlaptopall?latest=latest').then((res)=>setlatestCategories(res.data))
+                const fResult = await axiosInstance.get('/getlaptopall?latest=latest').then((res)=>setlatestCategories(res.data))
                 
             } catch (error) {
                 console.log(error)

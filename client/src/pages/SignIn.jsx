@@ -8,6 +8,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import {auth, provider} from '../Utils/firebase'
 import {signInWithPopup,} from "firebase/auth";
+import {axiosInstance} from '../config'
 
 
 // our styles appears here
@@ -89,7 +90,7 @@ const SignIn = () => {
       e.preventDefault()
 
       try {
-        const response = await axios.post('/signin', {email, password}).then((res)=>{
+        const response = await axiosInstance.post('/signin', {email, password}).then((res)=>{
           dispatch(getUser(res.data))
           navigate('/')
         } )
@@ -103,7 +104,7 @@ const SignIn = () => {
     e.preventDefault()
     signInWithPopup(auth, provider).then((result)=>{
        
-            axios.post('/withemail', {
+            axiosInstance.post('/withemail', {
                 username: result.user.displayName,
                 email: result.user.email
             }).then((res)=>{

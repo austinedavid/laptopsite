@@ -6,6 +6,7 @@ import {useParams} from 'react-router-dom'
 import axios from 'axios'
 import {useDispatch, useSelector} from 'react-redux'
 import {addToCart} from '../Slice/Cart'
+import {axiosInstance} from '../config'
 
 // here is for styles
 const Container = styled.div`
@@ -136,7 +137,7 @@ const About = () => {
   useEffect(()=>{
     const getSpec = async()=>{
       try {
-        const result  = await axios.get(`/getspec/${id}`).then((res)=>setspecLaptop(res.data))
+        const result  = await axiosInstance.get(`/getspec/${id}`).then((res)=>setspecLaptop(res.data))
       } catch (error) {
         console.log(error)
       }

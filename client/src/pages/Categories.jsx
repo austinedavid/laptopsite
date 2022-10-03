@@ -3,6 +3,7 @@ import Footer from '../components/Footer'
 import styled from 'styled-components'
 import axios from 'axios'
 import {Link, useParams} from 'react-router-dom'
+import {axiosInstance} from '../config'
 
 
 
@@ -119,7 +120,7 @@ const Categories = () => {
     useEffect(()=>{
         const getCat = async()=>{
             try {
-                const result = await axios.get(`/getlaptopall?categories=${convertedId}`).then(res=>setlaptopCategories(res.data))
+                const result = await axiosInstance.get(`/getlaptopall?categories=${convertedId}`).then(res=>setlaptopCategories(res.data))
             } catch (error) {
                 console.log(error)
             }

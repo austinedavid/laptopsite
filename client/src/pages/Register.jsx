@@ -8,6 +8,7 @@ import {getUser} from '../Slice/user'
 import {auth, provider} from '../Utils/firebase'
 import {signInWithPopup,} from "firebase/auth";
 import {useDispatch} from 'react-redux'
+import {axiosInstance} from '../config'
 
 // our styles appears here
 
@@ -91,7 +92,7 @@ const Register = () => {
       return toast.error("password and confirm password do not match")
     }
       try {
-        const registered = await axios.post('/signup', {
+        const registered = await axiosInstance.post('/signup', {
           username, email, password
         }).then((res)=> navigate('/signin'))
       } catch (error) {
@@ -104,7 +105,7 @@ const Register = () => {
     e.preventDefault()
     signInWithPopup(auth, provider).then((result)=>{
        
-            axios.post('/withemail', {
+            axiosInstance.post('/withemail', {
                 username: result.user.displayName,
                 email: result.user.email
             }).then((res)=>{

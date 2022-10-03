@@ -9,6 +9,7 @@ import {useSelector, useDispatch} from 'react-redux'
 import {removeAllCart, removeFromCart} from '../Slice/Cart'
 import StripeCheckout from 'react-stripe-checkout';
 import axios from 'axios'
+import { axiosInstance } from '../config'
 
 
 
@@ -237,7 +238,7 @@ const Cart = () => {
 
       
 
-      axios.post('/stripe', stripeBody).then((res)=>{
+      axiosInstance.post('/stripe', stripeBody).then((res)=>{
         
         navigate('/success')
         dispatch(removeAllCart())
